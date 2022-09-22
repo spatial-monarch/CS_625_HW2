@@ -1,0 +1,129 @@
+---
+title: "HW2_Report"
+author: "J Hall"
+date: "2022-09-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Part 1
+
+Firstly, while bringing the fata into OpenRefine, I made sure to select 
+"Attempt to parse cell text into numbers".
+
+After bringing the data into OpenRefine, I wanted to know which columns had 
+missing data. To do this I used
+
+`facet>customized facets>Facet by blank`
+
+I did this on all columns and found that Type had two blanks, Pets Full Name had 
+Five blanks, everyday name had ten blanks, Pets age had seven blanks and pets breed had 
+262 blanks.
+
+I decided to start cleaning with type of pet. Since this column indicated that 
+there were supposed to be four responses ( Dog, Cat, Bird, and Other) I decided to 
+start by turning the eighty-three choices into the four options. to find all the options listed, 
+I used :
+
+`Facet>Text Facet on the pet type column`
+
+I used `edit cells>Common Transforms>to title case` to clean up the appearance.
+
+this took it from 83 to 76 choices
+
+I used Cluster and edit on the type column Method was Key Collision and keying function was fingerprint.
+I then changed the new cell values to be either dog cat bird or other depending on what was most appropriate.
+
+This changed Fish, Lizard, etc. to the other category and cleaned up some of the cat dog and bird entries.
+
+The metaphone3 keying function caught a few more misspellings and highlighted that some entries had information 
+for more than one pet. I did not merge the entries that I thought may have more than one entry
+
+The Daitch-mokotoff keying method caught a few more
+
+After merge and re-cluster, I still had forty-six choices.
+
+I then manually looked at a few entries that stood out as likely not being actual pets (Roomba) or 
+that I thought may have more than one pet per entry to make decision about how to proceed.
+
+A few entries had names or breeds in place of type, I manually changed those entries.
+
+In records view, I split data that had more than one pet into several rows. Doing this had the unfortunate 
+effect of splitting all the entries for everyday name into several rows for all the records. I decided 
+that I could just delete those
+
+I then removed matching rows for blank timestamps (since I had already validated that all rows had a time stamp 
+before I accidentally created a bunch of extra rows. this removed all the extra rows I created. The entries 
+that were obviously not pets (robots, posters, etc.) I stared and then faceted by star then removed.
+
+Upon completion I had 1781 rows with the type column containing only dog cat bird or other as values
+
+For the name columns I just wanted to make sure that there were no blanks where that could be helped. I used 
+text facet to compare records where there might be a name in the everyday name column to make sure I could 
+fill in the blanks, then used a common transform to change all names to title case.
+
+
+for pets age I started with cluster and edit and removed as many text characters as I could to only leave numbers
+
+I converted age given in months to a number by dividing the time value by twelve and rounding to the 100ths position
+
+used transform common transform to number to convert the entries I just changed to numbers
+
+edit cells transform value.replace("years","") to remove years from cells
+
+there were a lot of entries that had text in this column, I used transforms on almost all of them to remove 
+the text in one form or another. I used a text facet and then transforms to remove the text rather than doing it manually.
+
+I manually changed the entries that were not changed by the transforms or clustering
+
+after I was satisfied that all the entries in this column were either numbers or the string 'deceased' I used 
+transform to numbers to finish this column.
+
+## Part 2
+
+*1.How many types (kinds) of pets are there?*
+
+My Data has four, Bird, Cat, Dog, and other.
+
+*2.How many dogs?*
+
+I have 1118 dogs in my data.
+
+*3.How many breeds of dogs?*
+
+I have 367 Breeds of Dogs
+
+*4.What's the most popular dog breed?*
+
+The most popular breed in my data is the Golden Retriever / Mix
+
+*5.What's the age range of the dogs?*
+
+The age range for dogs in my data spans 3 months to 25 years. The age '0' I used to indicate that the pet is no longer living.
+
+*6.What's the age range of the guinea pigs?*
+
+The Guinea Pigs in my data range in age from 1 to 4 years.
+
+*7.What is the oldest pet?*
+
+The oldest pet is 25 years old.
+
+*8.Which are more popular, betta fish or goldfish? How many of each?*
+
+in my dataset Betta fish are more popular than goldfish. There are 11 Bettas and five goldfish 
+
+*9.What's the most popular everyday name for a cat?*
+
+In my data 'Kitty' is the most popular everyday name for cats.
+
+*10.What's the most popular full name for a dog?*
+
+In my data, Bella is the most popular full name for dogs.
+
+
+## References
+
+OpenRefine User Manual https://docs.openrefine.org/
