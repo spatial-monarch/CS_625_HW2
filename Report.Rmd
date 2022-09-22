@@ -2,7 +2,6 @@
 title: "HW2_Report"
 author: "J Hall"
 date: "2022-09-22"
-output: html_document
 ---
 
 ```{r setup, include=FALSE}
